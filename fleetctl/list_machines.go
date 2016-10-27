@@ -25,7 +25,7 @@ import (
 )
 
 const (
-	defaultListMachinesFields = "machine,ip,metadata"
+	defaultListMachinesFields = "machine,hostname,ip,metadata"
 )
 
 var (
@@ -45,6 +45,13 @@ var (
 				return "-"
 			}
 			return formatMetadata(ms.Metadata)
+		},
+		"hostname": func(ms *machine.MachineState, full bool) string {
+			if val, ok := ms.Metadata["hostname"]; ok {
+				return val
+			} else {
+				return "-"
+			}
 		},
 	}
 )

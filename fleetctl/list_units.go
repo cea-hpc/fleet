@@ -26,7 +26,7 @@ import (
 )
 
 const (
-	defaultListUnitsFields = "unit,machine,active,sub"
+	defaultListUnitsFields = "unit,machine,hostname,active,sub"
 )
 
 var (
@@ -65,6 +65,20 @@ var (
 				ms = &machine.MachineState{ID: us.MachineID}
 			}
 			return machineFullLegend(*ms, full)
+		},
+		"hostname": func(us *schema.UnitState, full bool) string {
+			if us == nil || us.MachineID == "" {
+				return "-"
+			}
+			ms := cachedMachineState(us.MachineID)
+			if ms == nil {
+				ms = &machine.MachineState{ID: us.MachineID}
+			}
+			if val, ok := ms.Metadata["hostname"]; ok {
+				return val
+			} else {
+				return "-"
+			}
 		},
 		"hash": func(us *schema.UnitState, full bool) string {
 			if us == nil || us.Hash == "" {

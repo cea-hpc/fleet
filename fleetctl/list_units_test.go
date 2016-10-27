@@ -69,7 +69,9 @@ func TestListUnitsFieldsToStrings(t *testing.T) {
 
 	us.MachineID = "some-id"
 	ms := listUnitsFields["machine"](us, true)
+	msHostname := listUnitsFields["hostname"](us, true)
 	assertEqual(t, "machine", "some-id", ms)
+	assertEqual(t, "machine", "-", msHostname)
 
 	us.MachineID = "other-id"
 	machineStates = map[string]*machine.MachineState{
@@ -79,7 +81,27 @@ func TestListUnitsFieldsToStrings(t *testing.T) {
 		},
 	}
 	ms = listUnitsFields["machine"](us, true)
+	msHostname = listUnitsFields["hostname"](us, true)
 	assertEqual(t, "machine", "other-id/1.2.3.4", ms)
+	assertEqual(t, "hostname", "-", msHostname)
+
+	us.MachineID = "another-id"
+	metadata := map[string]string{
+		"foo":      "bar",
+		"ping":     "pong",
+		"hostname": "machineHostname",
+	}
+	machineStates = map[string]*machine.MachineState{
+		"another-id": &machine.MachineState{
+			ID:       "another-id",
+			PublicIP: "1.2.3.5",
+			Metadata: metadata,
+		},
+	}
+	ms = listUnitsFields["machine"](us, true)
+	msHostname = listUnitsFields["hostname"](us, true)
+	assertEqual(t, "machine", "another-id/1.2.3.5", ms)
+	assertEqual(t, "hostname", "machineHostname", msHostname)
 
 	uh := "a0f275d46bc6ee0eca06be7c339913c07d99c0c7"
 	us.Hash = uh
