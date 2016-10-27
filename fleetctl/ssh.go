@@ -73,7 +73,7 @@ func init() {
 	cmdSSH.Flags().StringVar(&flagUnit, "unit", "", "Open SSH connection to machine running provided unit.")
 	cmdSSH.Flags().BoolVar(&flagSSHAgentForwarding, "forward-agent", false, "Forward local ssh-agent to target machine.")
 	cmdSSH.Flags().BoolVar(&flagSSHAgentForwarding, "A", false, "Shorthand for --forward-agent")
-	cmdSSH.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 22, "Connect to remote hosts over SSH using this TCP port.")
+	cmdSSH.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 422, "Connect to remote hosts over SSH using this TCP port.")
 }
 
 func runSSH(cCmd *cobra.Command, args []string) (exit int) {

@@ -50,7 +50,7 @@ func init() {
 	cmdJournal.Flags().IntVar(&flagLines, "lines", 10, "Number of recent log lines to return")
 	cmdJournal.Flags().BoolVar(&flagFollow, "follow", false, "Continuously print new entries as they are appended to the journal.")
 	cmdJournal.Flags().BoolVar(&flagFollow, "f", false, "Shorthand for --follow")
-	cmdJournal.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 22, "Connect to remote hosts over SSH using this TCP port")
+	cmdJournal.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 422, "Connect to remote hosts over SSH using this TCP port")
 	cmdJournal.Flags().BoolVar(&flagSudo, "sudo", false, "Execute journal command with sudo")
 	cmdJournal.Flags().StringVar(&flagOutput, "output", "short", "Output mode. This will be passed unaltered to journalctl on the remote host, and hence supports the same modes as that command.")
 }

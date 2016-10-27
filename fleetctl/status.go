@@ -43,7 +43,7 @@ This command does not work with global units.`,
 func init() {
 	cmdFleet.AddCommand(cmdStatus)
 
-	cmdStatus.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 22, "Connect to remote hosts over SSH using this TCP port.")
+	cmdStatus.Flags().IntVar(&sharedFlags.SSHPort, "ssh-port", 422, "Connect to remote hosts over SSH using this TCP port.")
 }
 
 func runStatusUnit(cCmd *cobra.Command, args []string) (exit int) {
