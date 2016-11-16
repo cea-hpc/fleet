@@ -268,6 +268,10 @@ func (s *Server) Supervise() {
 		log.Errorf("Server monitor triggered: %v", err)
 	}
 	close(s.stopc)
+	if !sd {
+		log.Infof("Health check failure : purging local units")
+		s.aReconciler.Purge(s.agent)
+	}
 	done := make(chan struct{})
 	go func() {
 		s.wg.Wait()
