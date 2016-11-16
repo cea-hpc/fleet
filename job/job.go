@@ -16,6 +16,7 @@ package job
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/coreos/fleet/pkg"
@@ -53,6 +54,8 @@ const (
 	fleetMachineMetadata = "MachineMetadata"
 	// Require that the unit be scheduled on every machine in the cluster
 	fleetGlobal = "Global"
+	// Unit weight
+	fleetWeight = "Weight"
 
 	deprecatedXPrefix          = "X-"
 	deprecatedXConditionPrefix = "X-Condition"
@@ -71,6 +74,7 @@ var validRequirements = pkg.NewUnsafeSet(
 	fleetMachineMetadata,
 	fleetGlobal,
 	fleetReplaces,
+	fleetWeight,
 )
 
 func ParseJobState(s string) (JobState, error) {
@@ -107,6 +111,7 @@ type Unit struct {
 	Name        string
 	Unit        unit.UnitFile
 	TargetState JobState
+	Weight      uint16
 }
 
 // IsGlobal returns whether a Unit is considered a global unit
@@ -236,6 +241,23 @@ func (j *Job) Replaces() []string {
 	replaces := make([]string, 0)
 	replaces = append(replaces, j.requirements()[fleetReplaces]...)
 	return replaces
+}
+
+// Weight represents an integer of the 'weight' of the service
+// can influence scheduling decisions.
+func (j *Job) Weight() uint16 {
+	weightStr := make([]string, 0)
+	weightStr = append(weightStr, j.requirements()[fleetWeight]...)
+	if len(weightStr) != 0 {
+		weight, err := strconv.ParseUint(weightStr[0], 10, 16)
+		if err != nil {
+			_ = fmt.Errorf("invalid value %s for Unit Weight, assuming Weight=1", weightStr[0])
+			return uint16(1)
+		}
+		return uint16(weight)
+	} else {
+		return uint16(1)
+	}
 }
 
 // Peers returns a list of Job names that must be scheduled to the same

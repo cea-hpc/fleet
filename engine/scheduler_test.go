@@ -152,6 +152,76 @@ func TestAgentStateSorting(t *testing.T) {
 				},
 			},
 		},
+
+		// Weighted sort by number of jobs and their respective weight
+		{
+			in: []*agent.AgentState{
+				&agent.AgentState{
+					MState: &machine.MachineState{ID: "A"},
+					Units: map[string]*job.Unit{
+						"1.service": &job.Unit{
+							Weight: 1,
+						},
+						"2.service": &job.Unit{
+							Weight: 2,
+						},
+						"3.service": &job.Unit{
+							Weight: 2,
+						},
+						"4.service": &job.Unit{
+							Weight: 2,
+						},
+						"5.service": &job.Unit{
+							Weight: 1,
+						},
+					},
+				},
+				&agent.AgentState{
+					MState: &machine.MachineState{ID: "B"},
+					Units: map[string]*job.Unit{
+						"6.service": &job.Unit{
+							Weight: 5,
+						},
+						"7.service": &job.Unit{
+							Weight: 4,
+						},
+					},
+				},
+			},
+			out: []*agent.AgentState{
+				&agent.AgentState{
+					MState: &machine.MachineState{ID: "A"},
+					Units: map[string]*job.Unit{
+						"1.service": &job.Unit{
+							Weight: 1,
+						},
+						"2.service": &job.Unit{
+							Weight: 2,
+						},
+						"3.service": &job.Unit{
+							Weight: 2,
+						},
+						"4.service": &job.Unit{
+							Weight: 2,
+						},
+						"5.service": &job.Unit{
+							Weight: 1,
+						},
+					},
+				},
+				&agent.AgentState{
+					MState: &machine.MachineState{ID: "B"},
+					Units: map[string]*job.Unit{
+						"6.service": &job.Unit{
+							Weight: 5,
+						},
+						"7.service": &job.Unit{
+							Weight: 4,
+						},
+					},
+				},
+			},
+		},
 	}
 
 	for i, tt := range tests {

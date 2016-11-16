@@ -109,10 +109,12 @@ func TestClusterStateAgents(t *testing.T) {
 						"bar.service": &job.Unit{
 							Name:        "bar.service",
 							TargetState: job.JobStateLoaded,
+							Weight:      uint16(1),
 						},
 						"baz.service": &job.Unit{
 							Name:        "baz.service",
 							TargetState: job.JobStateLaunched,
+							Weight:      uint16(1),
 						},
 					},
 				},
@@ -300,10 +302,12 @@ func TestClusterStateAgents(t *testing.T) {
 						"foo.service": &job.Unit{
 							Name:        "foo.service",
 							TargetState: job.JobStateLaunched,
+							Weight:      uint16(1),
 						},
 						"ping.service": &job.Unit{
 							Name:        "ping.service",
 							TargetState: job.JobStateLaunched,
+							Weight:      uint16(1),
 						},
 					},
 				},
@@ -313,6 +317,7 @@ func TestClusterStateAgents(t *testing.T) {
 						"pong.service": &job.Unit{
 							Name:        "pong.service",
 							TargetState: job.JobStateLaunched,
+							Weight:      uint16(1),
 						},
 					},
 				},
@@ -322,6 +327,7 @@ func TestClusterStateAgents(t *testing.T) {
 						"bar.service": &job.Unit{
 							Name:        "bar.service",
 							TargetState: job.JobStateLaunched,
+							Weight:      uint16(1),
 						},
 					},
 				},

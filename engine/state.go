@@ -85,6 +85,7 @@ func (cs *clusterState) agents() map[string]*agent.AgentState {
 				Name:        j.Name,
 				Unit:        j.Unit,
 				TargetState: j.TargetState,
+				Weight:      j.Weight(),
 			}
 			as.Units[j.Name] = u
 		}
