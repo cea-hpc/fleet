@@ -26,7 +26,7 @@ import (
 )
 
 const (
-	defaultListUnitsFields = "unit,machine,hostname,active,sub"
+	defaultListUnitsFields = "unit,machine,active,sub"
 )
 
 var (

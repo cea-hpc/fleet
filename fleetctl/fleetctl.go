@@ -623,6 +623,9 @@ func machineFullLegend(ms machine.MachineState, full bool) string {
 	if len(ms.PublicIP) > 0 {
 		legend = fmt.Sprintf("%s/%s", legend, ms.PublicIP)
 	}
+	if ms.Hostname() != "-" {
+		legend = fmt.Sprintf("%s/%s", machineIDLegend(ms, full), ms.Hostname())
+	}
 	return legend
 }
 

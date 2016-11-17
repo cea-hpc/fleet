@@ -35,6 +35,14 @@ func (ms MachineState) ShortID() string {
 	return ms.ID[0:shortIDLen]
 }
 
+func (ms MachineState) Hostname() string {
+	if val, ok := ms.Metadata["hostname"]; ok {
+		return val
+	} else {
+		return "-"
+	}
+}
+
 func (ms MachineState) MatchID(ID string) bool {
 	return ms.ID == ID || ms.ShortID() == ID
 }

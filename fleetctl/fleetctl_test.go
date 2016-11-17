@@ -205,6 +205,41 @@ func TestFullLegendWithoutPublicIP(t *testing.T) {
 	}
 }
 
+func TestFullLegendWithHostnameWithPublicIp(t *testing.T) {
+	ms := machine.MachineState{
+		ID:       "595989bb-cbb7-49ce-8726-722d6e157b4e",
+		PublicIP: "5.6.7.8",
+		Metadata: map[string]string{"hostname": "foo"},
+	}
+
+	l := machineFullLegend(ms, false)
+	if l != "595989bb.../foo" {
+		t.Errorf("Expected partial machine ID with public IP, but it was %s\n", l)
+	}
+
+	l = machineFullLegend(ms, true)
+	if l != "595989bb-cbb7-49ce-8726-722d6e157b4e/foo" {
+		t.Errorf("Expected full machine ID with public IP, but it was %s\n", l)
+	}
+}
+
+func TestFullLegendWithHostnameWithoutPublicIp(t *testing.T) {
+	ms := machine.MachineState{
+		ID:       "595989bb-cbb7-49ce-8726-722d6e157b4e",
+		Metadata: map[string]string{"hostname": "foo"},
+	}
+
+	l := machineFullLegend(ms, false)
+	if l != "595989bb.../foo" {
+		t.Errorf("Expected partial machine ID with public IP, but it was %s\n", l)
+	}
+
+	l = machineFullLegend(ms, true)
+	if l != "595989bb-cbb7-49ce-8726-722d6e157b4e/foo" {
+		t.Errorf("Expected full machine ID with public IP, but it was %s\n", l)
+	}
+}
+
 var unitNameMangleTests = map[string]string{
 	"foo":            "foo.service",
 	"foo.1":          "foo.1.service",

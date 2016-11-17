@@ -100,7 +100,7 @@ func TestListUnitsFieldsToStrings(t *testing.T) {
 	}
 	ms = listUnitsFields["machine"](us, true)
 	msHostname = listUnitsFields["hostname"](us, true)
-	assertEqual(t, "machine", "another-id/1.2.3.5", ms)
+	assertEqual(t, "machine", "another-id/machineHostname", ms)
 	assertEqual(t, "hostname", "machineHostname", msHostname)
 
 	uh := "a0f275d46bc6ee0eca06be7c339913c07d99c0c7"
