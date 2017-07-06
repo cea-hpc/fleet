@@ -314,6 +314,7 @@ type Unit struct {
 	Name         string      `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Unit         UnitFile    `protobuf:"bytes,2,opt,name=unit" json:"unit"`
 	DesiredState TargetState `protobuf:"varint,3,opt,name=desired_state,json=desiredState,proto3,enum=rpc.TargetState" json:"desired_state,omitempty"`
+	Weight       uint16      `protobuf:"varint,4,opt,name=weight,proto3" json:"name,omitempty"`
 }
 
 func (m *Unit) Reset()                    { *m = Unit{} }
