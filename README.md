@@ -1,11 +1,6 @@
-## <img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"><img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"><img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"> Deprecation warning <img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"><img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"><img src="Documentation/achtung.png" alt="WARNING" width="30" height="30"><a name="deprecation-warning"></a>
-fleet is no longer developed or maintained by CoreOS. CoreOS instead recommends Kubernetes for all clustering needs.
-The project exists here for historical reference. If you are interested in the future of the project and taking over stewardship, please contact fleet@coreos.com
-
 # fleet - a distributed init system
 
-[![Build Status](https://travis-ci.org/coreos/fleet.png?branch=master)](https://travis-ci.org/coreos/fleet)
-[![Build Status](https://semaphoreci.com/api/v1/coreos/fleet/branches/master/badge.svg)](https://semaphoreci.com/coreos/fleet)
+[![Build Status](https://travis-ci.org/cea-hpc/fleet.png?branch=master)](https://travis-ci.org/cea-hpc/fleet)
 
 fleet ties together [systemd][coreos-systemd] and [etcd][etcd] into a simple distributed init system. Think of it as an extension of systemd that operates at the cluster level instead of the machine level.
 
