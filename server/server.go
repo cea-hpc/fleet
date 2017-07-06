@@ -24,6 +24,7 @@ import (
 
 	etcd "github.com/coreos/etcd/client"
 	"github.com/coreos/go-systemd/activation"
+	"golang.org/x/net/context"
 
 	"github.com/coreos/fleet/agent"
 	"github.com/coreos/fleet/api"
@@ -62,6 +63,7 @@ type Server struct {
 	disableEngine  bool
 	reconfigServer bool
 	restartServer  bool
+	eClient        etcd.Client
 
 	engineReconcileInterval time.Duration
 
@@ -179,6 +181,7 @@ func New(cfg config.Config, listeners []net.Listener) (*Server, error) {
 		disableEngine:           cfg.DisableEngine,
 		reconfigServer:          false,
 		restartServer:           false,
+		eClient:                 eClient,
 	}
 
 	return &srv, nil
@@ -221,6 +224,8 @@ func (s *Server) Run() {
 			}
 		}
 		log.Warningf("Server register machine failed: %v, retrying in %d sec.", err, sleep)
+		log.Infof("Syncing etcd client")
+		s.eClient.Sync(context.Background())
 		time.Sleep(sleep)
 	}
 
