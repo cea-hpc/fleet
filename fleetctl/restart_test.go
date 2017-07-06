@@ -19,7 +19,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 func checkRestartUnitState(unit schema.Unit, restartRet int, errchan chan error) {

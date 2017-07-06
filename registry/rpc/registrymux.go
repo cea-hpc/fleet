@@ -23,13 +23,13 @@ import (
 
 	"github.com/coreos/go-semver/semver"
 
-	"github.com/coreos/fleet/engine"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/pkg/lease"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/engine"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/pkg/lease"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 type RegistryMux struct {

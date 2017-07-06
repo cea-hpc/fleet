@@ -18,12 +18,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/metrics"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/pkg/lease"
-	"github.com/coreos/fleet/registry"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/metrics"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/pkg/lease"
+	"github.com/cea-hpc/fleet/registry"
 )
 
 const (

@@ -17,7 +17,7 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/coreos/fleet/version"
+	"github.com/cea-hpc/fleet/version"
 )
 
 var cmdVersion = &cobra.Command{

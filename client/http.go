@@ -21,8 +21,8 @@ import (
 
 	"google.golang.org/api/googleapi"
 
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 func NewHTTPClient(c *http.Client, ep url.URL) (API, error) {

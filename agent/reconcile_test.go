@@ -18,10 +18,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 // Represents the hash of e.g. an empty unit

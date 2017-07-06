@@ -19,7 +19,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/coreos/fleet/job"
+	"github.com/cea-hpc/fleet/job"
 )
 
 func doStopUnits(t *testing.T, r commandTestResults, errchan chan error) {

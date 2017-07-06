@@ -20,10 +20,10 @@ import (
 
 	etcdErr "github.com/coreos/etcd/error"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/pkg/lease"
-	"github.com/coreos/fleet/registry"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/pkg/lease"
+	"github.com/cea-hpc/fleet/registry"
 )
 
 // IsGrpcLeader checks if the current leader has gRPC capabilities enabled or error

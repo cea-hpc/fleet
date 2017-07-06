@@ -19,7 +19,7 @@ import (
 
 	"github.com/jonboulle/clockwork"
 
-	"github.com/coreos/fleet/log"
+	"github.com/cea-hpc/fleet/log"
 )
 
 type Event string

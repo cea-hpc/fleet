@@ -19,8 +19,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
 )
 
 var cmdUnload = &cobra.Command{

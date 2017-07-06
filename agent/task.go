@@ -17,7 +17,7 @@ package agent
 import (
 	"fmt"
 
-	"github.com/coreos/fleet/job"
+	"github.com/cea-hpc/fleet/job"
 )
 
 const (

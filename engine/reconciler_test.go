@@ -18,8 +18,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/machine"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/machine"
 )
 
 func TestCalculateClusterTasks(t *testing.T) {

@@ -19,11 +19,11 @@ import (
 	"sort"
 	"time"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/registry"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/registry"
 )
 
 const (

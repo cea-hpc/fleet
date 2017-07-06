@@ -13,7 +13,7 @@
 %global provider_tld	com
 %global project		coreos
 %global repo		fleet
-# https://github.com/coreos/fleet
+# https://github.com/cea-hpc/fleet
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 %global import_path     %{provider_prefix}
 

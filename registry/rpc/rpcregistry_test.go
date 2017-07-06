@@ -21,7 +21,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "github.com/coreos/fleet/protobuf"
+	pb "github.com/cea-hpc/fleet/protobuf"
 )
 
 func TestRPCRegistryClientCreation(t *testing.T) {

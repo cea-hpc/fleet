@@ -19,8 +19,8 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 func wireUpDiscoveryResource(mux *http.ServeMux, prefix string) {

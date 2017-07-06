@@ -18,7 +18,7 @@ fi
 export GOBIN="${CDIR}/bin"
 export GOPATH="${CDIR}/gopath"
 export VERSION=$(git describe --dirty)
-export GLDFLAGS="-X github.com/coreos/fleet/version.Version=${VERSION} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')"
+export GLDFLAGS="-X github.com/cea-hpc/fleet/version.Version=${VERSION} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')"
 eval $(go env)
 export PATH="${GOROOT}/bin:${PATH}"
 export FLEETD_BIN="${CDIR}/bin/fleetd"

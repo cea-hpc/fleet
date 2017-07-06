@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coreos/fleet/functional/util"
-	"github.com/coreos/fleet/version"
+	"github.com/cea-hpc/fleet/functional/util"
+	"github.com/cea-hpc/fleet/version"
 )
 
 func TestClientVersionFlag(t *testing.T) {

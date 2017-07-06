@@ -21,10 +21,10 @@ import (
 	"path"
 	"regexp"
 
-	"github.com/coreos/fleet/client"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/client"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 var (

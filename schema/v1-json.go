@@ -27,7 +27,7 @@ const DiscoveryJSON = `{
   "version": "v1",
   "title": "fleet API",
   "description": "",
-  "documentationLink": "http://github.com/coreos/fleet",
+  "documentationLink": "http://github.com/cea-hpc/fleet",
   "protocol": "rest",
   "icons": {
     "x16": "",

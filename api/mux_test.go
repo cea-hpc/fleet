@@ -20,8 +20,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/version"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/version"
 )
 
 const testTokenLimit = 100

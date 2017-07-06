@@ -19,7 +19,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 var cmdCat = &cobra.Command{

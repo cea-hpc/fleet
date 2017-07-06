@@ -25,11 +25,11 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 
-	"github.com/coreos/fleet/debug"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	pb "github.com/coreos/fleet/protobuf"
-	"github.com/coreos/fleet/registry"
+	"github.com/cea-hpc/fleet/debug"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	pb "github.com/cea-hpc/fleet/protobuf"
+	"github.com/cea-hpc/fleet/registry"
 )
 
 var debugRPCServer bool = false

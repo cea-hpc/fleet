@@ -22,9 +22,9 @@ import (
 	etcd "github.com/coreos/etcd/client"
 	"golang.org/x/net/context"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 const (
@@ -36,7 +36,7 @@ const (
 
 // legacyUnitStatePath returns the path where UnitState objects were formerly
 // reported before being moved to a machine-specific namespace
-// https://github.com/coreos/fleet/issues/638
+// https://github.com/cea-hpc/fleet/issues/638
 func (r *EtcdRegistry) legacyUnitStatePath(jobName string) string {
 	return r.prefixed(statePrefix, jobName)
 }
@@ -219,7 +219,7 @@ func (r *EtcdRegistry) SaveUnitState(jobName string, unitState *unit.UnitState, 
 
 // Delete the state from the Registry for the given Job's Unit
 func (r *EtcdRegistry) RemoveUnitState(jobName string) error {
-	// TODO(jonboulle): consider https://github.com/coreos/fleet/issues/465
+	// TODO(jonboulle): consider https://github.com/cea-hpc/fleet/issues/465
 	legacyKey := r.legacyUnitStatePath(jobName)
 	_, err := r.kAPI.Delete(context.Background(), legacyKey, nil)
 	if err != nil && !isEtcdError(err, etcd.ErrorCodeKeyNotFound) {

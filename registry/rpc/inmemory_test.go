@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
-	pb "github.com/coreos/fleet/protobuf"
-	"github.com/coreos/fleet/unit"
+	pb "github.com/cea-hpc/fleet/protobuf"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 func TestInMemoryScheduleUnit(t *testing.T) {

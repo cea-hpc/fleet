@@ -18,13 +18,13 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/coreos/fleet/client"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/schema"
-	"github.com/coreos/fleet/unit"
-	"github.com/coreos/fleet/version"
+	"github.com/cea-hpc/fleet/client"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/schema"
+	"github.com/cea-hpc/fleet/unit"
+	"github.com/cea-hpc/fleet/version"
 
 	"github.com/coreos/go-semver/semver"
 )

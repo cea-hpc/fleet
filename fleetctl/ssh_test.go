@@ -17,11 +17,11 @@ package main
 import (
 	"testing"
 
-	"github.com/coreos/fleet/client"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/client"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 func newMachineState(id, ip string, md map[string]string) machine.MachineState {

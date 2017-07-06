@@ -22,7 +22,7 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/coreos/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/platform"
 )
 
 // Start three units using ssh tunnel

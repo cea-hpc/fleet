@@ -33,7 +33,7 @@ import (
 
 	"github.com/coreos/go-systemd/dbus"
 
-	"github.com/coreos/fleet/functional/util"
+	"github.com/cea-hpc/fleet/functional/util"
 )
 
 const (

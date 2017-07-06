@@ -1,4 +1,4 @@
-package: github.com/coreos/fleet
+package: github.com/cea-hpc/fleet
 import:
 - package: github.com/coreos/etcd
   subpackages:

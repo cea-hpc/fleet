@@ -22,12 +22,12 @@ import (
 	"path"
 	"strings"
 
-	"github.com/coreos/fleet/client"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/schema"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/client"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/schema"
+	"github.com/cea-hpc/fleet/unit"
 
 	gsunit "github.com/coreos/go-systemd/unit"
 )

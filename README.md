@@ -11,7 +11,7 @@ fleet ties together [systemd][coreos-systemd] and [etcd][etcd] into a simple dis
 The fleet project is [no longer maintained](#deprecation-warning).
 
 As of v1.0.0, fleet has seen production use for some time and is largely considered stable.
-However, there are [various known and unresolved issues](https://github.com/coreos/fleet/issues), including [scalability limitations][fleet-scaling] with its architecture.
+However, there are [various known and unresolved issues](https://github.com/cea-hpc/fleet/issues), including [scalability limitations][fleet-scaling] with its architecture.
 As such, it is not recommended to run fleet clusters larger than 100 nodes or with more than 1000 services.
 
 ## Using fleet
@@ -92,6 +92,6 @@ Specific components of fleet use code derivative from software distributed under
 [kubernetes]: http://kubernetes.io
 [license]: LICENSE
 [maintainers]: MAINTAINERS
-[releases]: https://github.com/coreos/fleet/releases
+[releases]: https://github.com/cea-hpc/fleet/releases
 [unit-files]: Documentation/unit-files-and-scheduling.md#fleet-specific-options
 [using-the-client.md]: Documentation/using-the-client.md

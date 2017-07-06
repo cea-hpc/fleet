@@ -19,7 +19,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 func TestDiscoveryJson(t *testing.T) {

@@ -25,13 +25,13 @@ import (
 
 	"github.com/rakyll/globalconf"
 
-	"github.com/coreos/fleet/agent"
-	"github.com/coreos/fleet/config"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/server"
-	"github.com/coreos/fleet/version"
+	"github.com/cea-hpc/fleet/agent"
+	"github.com/cea-hpc/fleet/config"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/server"
+	"github.com/cea-hpc/fleet/version"
 )
 
 const (

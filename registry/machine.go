@@ -21,7 +21,7 @@ import (
 	etcd "github.com/coreos/etcd/client"
 	"golang.org/x/net/context"
 
-	"github.com/coreos/fleet/machine"
+	"github.com/cea-hpc/fleet/machine"
 	"path"
 )
 

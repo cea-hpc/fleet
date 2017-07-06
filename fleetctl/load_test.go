@@ -19,8 +19,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/schema"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/schema"
 )
 
 func checkLoadUnitState(unit schema.Unit, loadRet int, errchan chan error) {

@@ -25,8 +25,8 @@ import (
 
 	"github.com/vishvananda/netlink"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 const (

@@ -28,8 +28,8 @@ import (
 
 	gossh "golang.org/x/crypto/ssh"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/pkg"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/pkg"
 )
 
 const (

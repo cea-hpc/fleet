@@ -23,8 +23,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/fleet/functional/platform"
-	"github.com/coreos/fleet/functional/util"
+	"github.com/cea-hpc/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/util"
 )
 
 // Start three pairs of services, asserting each pair land on the same

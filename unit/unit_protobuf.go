@@ -15,7 +15,7 @@
 package unit
 
 import (
-	pb "github.com/coreos/fleet/protobuf"
+	pb "github.com/cea-hpc/fleet/protobuf"
 )
 
 func (unitFile *UnitFile) ToPB() pb.UnitFile {

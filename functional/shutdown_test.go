@@ -18,7 +18,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coreos/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/platform"
 )
 
 // Check clean shutdown of fleetd under normal circumstances

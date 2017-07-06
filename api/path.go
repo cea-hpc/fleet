@@ -18,7 +18,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/coreos/fleet/log"
+	"github.com/cea-hpc/fleet/log"
 )
 
 func isCollectionPath(base, p string) bool {

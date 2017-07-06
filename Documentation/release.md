@@ -38,7 +38,7 @@ All releases version numbers follow the format of [semantic versioning 2.0.0](ht
 - Manually check new features work well.
 - Add a signed tag through `GIT_COMMITTER_NAME="CoreOS Application Signing Key" GIT_COMMITTER_EMAIL="security@coreos.com" git tag -s ${VERSION} -u $SUBKEYID`. (note that you may need `git config gpg.program=gpg2`)
 - Sanity check tag correctness through `git show tags/$VERSION`.
-- Push the tag to GitHub through `git push origin tags/$VERSION`. This assumes `origin` corresponds to "https://github.com/coreos/fleet".
+- Push the tag to GitHub through `git push origin tags/$VERSION`. This assumes `origin` corresponds to "https://github.com/cea-hpc/fleet".
 
 ## Build Release Binaries and Images
 

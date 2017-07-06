@@ -24,12 +24,12 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	"github.com/coreos/fleet/debug"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	pb "github.com/coreos/fleet/protobuf"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/debug"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	pb "github.com/cea-hpc/fleet/protobuf"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 var DebugRPCRegistry bool = false

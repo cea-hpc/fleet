@@ -19,10 +19,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/coreos/fleet/agent"
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/agent"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 func newUnitWithMetadata(t *testing.T, metadata string) unit.UnitFile {

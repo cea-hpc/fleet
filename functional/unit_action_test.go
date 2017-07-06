@@ -24,8 +24,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coreos/fleet/functional/platform"
-	"github.com/coreos/fleet/functional/util"
+	"github.com/cea-hpc/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/util"
 )
 
 const (
@@ -696,7 +696,7 @@ func waitForNUnitsCmd(cl platform.Cluster, m platform.Member, cmd string, nu int
 // This test is to make sure that two versions of the same unit will not
 // conflict with each other, that the directives are always serialized,
 // and it tries its best to avoid the following scenarios:
-// https://github.com/coreos/fleet/issues/1000
+// https://github.com/cea-hpc/fleet/issues/1000
 // https://github.com/systemd/systemd/issues/518
 // Now we can't guarantee that that behaviour will not be triggered by
 // another external operation, but at least from the Unit replace

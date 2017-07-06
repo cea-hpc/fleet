@@ -3,7 +3,7 @@
 CDIR=$(cd `dirname "$0"` && pwd)
 cd "$CDIR"
 
-ORG_PATH="github.com/coreos"
+ORG_PATH="github.com/cea-hpc"
 REPO_PATH="${ORG_PATH}/fleet"
 
 if [ ! $(command -v go 2>/dev/null) ]; then

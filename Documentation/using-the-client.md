@@ -344,7 +344,7 @@ $ fleetctl list-machines
 The `ssh-add` command need only be run once for all Vagrant hosts. You will have to set `FLEETCTL_TUNNEL` specifically for each vagrant host with which you interact.
 
 [deployment-and-configuration]: deployment-and-configuration.md
-[fleet-releases]: https://github.com/coreos/fleet/releases
+[fleet-releases]: https://github.com/cea-hpc/fleet/releases
 [remote-fleet-access]: #remote-fleet-access
 [ssh-tunnel]: #from-an-external-host
 [unit-files-and-scheduling]: unit-files-and-scheduling.md

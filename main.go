@@ -13,16 +13,16 @@
 // limitations under the License.
 
 // Package main is a simple wrapper of the real fleet entrypoint package
-// (located at github.com/coreos/fleet/fleetd) to ensure that fleet is still
-// "go getable"; e.g. `go get github.com/coreos/fleet` works as expected and
+// (located at github.com/cea-hpc/fleet/fleetd) to ensure that fleet is still
+// "go getable"; e.g. `go get github.com/cea-hpc/fleet` works as expected and
 // builds a binary in $GOBIN/fleetd
 //
 // This package should NOT be extended or modified in any way; to modify the
-// fleetd binary, work in the `github.com/coreos/fleet/fleetd` package.
+// fleetd binary, work in the `github.com/cea-hpc/fleet/fleetd` package.
 //
 package main
 
-import "github.com/coreos/fleet/fleetd"
+import "github.com/cea-hpc/fleet/fleetd"
 
 func main() {
 	fleetd.Main()

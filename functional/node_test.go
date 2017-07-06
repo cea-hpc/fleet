@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coreos/fleet/functional/platform"
-	"github.com/coreos/fleet/functional/util"
+	"github.com/cea-hpc/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/util"
 )
 
 // Simulate the shutdown of a single fleet node

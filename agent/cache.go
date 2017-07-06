@@ -17,7 +17,7 @@ package agent
 import (
 	"encoding/json"
 
-	"github.com/coreos/fleet/job"
+	"github.com/cea-hpc/fleet/job"
 )
 
 type agentCache map[string]job.JobState

@@ -19,12 +19,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/coreos/fleet/job"
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/registry"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/job"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/registry"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 const (
@@ -116,7 +116,7 @@ func (a *Agent) unloadUnit(unitName string) error {
 	// unit should be unloaded and unit file should be removed, only if the unit
 	// could be successfully stopped. Otherwise the unit could get into a state
 	// where the unit cannot be stopped via fleet, because the unit file was
-	// already removed. See also https://github.com/coreos/fleet/issues/1216.
+	// already removed. See also https://github.com/cea-hpc/fleet/issues/1216.
 	var errUnload error
 	if errStop == nil {
 		errUnload = a.um.Unload(unitName)

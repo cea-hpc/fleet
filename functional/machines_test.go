@@ -23,7 +23,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/coreos/fleet/functional/platform"
+	"github.com/cea-hpc/fleet/functional/platform"
 )
 
 // schemaMachines structures should match with those of

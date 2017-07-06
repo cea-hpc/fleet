@@ -17,7 +17,7 @@ package machine
 import (
 	"testing"
 
-	"github.com/coreos/fleet/pkg"
+	"github.com/cea-hpc/fleet/pkg"
 )
 
 func TestHasMetadata(t *testing.T) {

@@ -26,10 +26,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	//     "github.com/coreos/fleet/client"
-	"github.com/coreos/fleet/machine"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/ssh"
+	//     "github.com/cea-hpc/fleet/client"
+	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/ssh"
 )
 
 var (

@@ -14,7 +14,7 @@
 
 // Package schema provides access to the fleet API.
 //
-// See http://github.com/coreos/fleet
+// See http://github.com/cea-hpc/fleet
 //
 // Usage example:
 //

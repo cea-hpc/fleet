@@ -19,7 +19,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/coreos/fleet/client"
+	"github.com/cea-hpc/fleet/client"
 )
 
 var cmdDestroy = &cobra.Command{

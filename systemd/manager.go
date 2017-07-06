@@ -23,9 +23,9 @@ import (
 
 	"github.com/coreos/go-systemd/dbus"
 
-	"github.com/coreos/fleet/log"
-	"github.com/coreos/fleet/pkg"
-	"github.com/coreos/fleet/unit"
+	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/pkg"
+	"github.com/cea-hpc/fleet/unit"
 )
 
 type systemdUnitManager struct {

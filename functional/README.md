@@ -33,7 +33,7 @@ The recommended way to run the tests is to use the provided Vagrantfile, which w
 To do so, simply run the following commands on a system with Vagrant installed (see [Vagrant configuration][configure-vagrant] section of this doc)
 
 ```sh
-$ git clone https://github.com/coreos/fleet
+$ git clone https://github.com/cea-hpc/fleet
 $ cd fleet/functional
 $ ./run-in-vagrant
 ```
@@ -45,7 +45,7 @@ Vagrant's provision step includes go binaries download using `functional/provisi
 If you don't want to use Vagrant or VirtualBox, you can run tests inside official CoreOS QEMU image. You have to make sure QEMU is installed on your system.
 
 ```sh
-$ git clone https://github.com/coreos/fleet
+$ git clone https://github.com/cea-hpc/fleet
 $ cd fleet/functional
 $ ./run-in-qemu
 ```
@@ -57,7 +57,7 @@ If you get `Could not access KVM kernel module: Permission denied` error message
 It's also possible to run the tests on CoreOS on other platforms. The following commands should be run *inside* the CoreOS instance.
 
 ```sh
-$ git clone https://github.com/coreos/fleet
+$ git clone https://github.com/cea-hpc/fleet
 ```
 
 If you didn't configure etcd2 daemon yet, just run this script:
