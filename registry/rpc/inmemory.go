@@ -89,6 +89,8 @@ func (r *inmemoryRegistry) Schedule() (units []pb.ScheduledUnit, err error) {
 	}
 	r.mu.RLock()
 	defer r.mu.RUnlock()
+	r.unitStatesMu.Lock()
+	defer r.unitStatesMu.Unlock()
 
 	units = make([]pb.ScheduledUnit, 0, len(r.scheduledUnits))
 	for _, schedUnit := range r.scheduledUnits {
