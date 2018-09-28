@@ -9,6 +9,12 @@ matrix:
   allow_failures:
     - go: tip
 
+before_install:
+  - curl https://glide.sh/get | sh
+
+install:
+  - glide install
+
 script:
  - ./test
 

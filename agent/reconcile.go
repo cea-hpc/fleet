@@ -333,7 +333,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 }
 
 func (ar *AgentReconciler) launchTasks(tasks []task, a *Agent) {
-	log.Debugf("AgentReconciler attempting tasks %s", tasks)
+	log.Debugf("AgentReconciler attempting tasks %+v", tasks)
 	results := ar.tManager.Do(tasks, a)
 	for _, res := range results {
 		unitName := "N/A"
