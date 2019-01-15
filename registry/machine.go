@@ -67,7 +67,7 @@ func (r *EtcdRegistry) CreateMachineState(ms machine.MachineState, ttl time.Dura
 
 	key := r.prefixed(machinePrefix, ms.ID, "object")
 	opts := &etcd.SetOptions{
-		PrevExist: etcd.PrevNoExist,
+		PrevExist: etcd.PrevIgnore,
 		TTL:       ttl,
 	}
 	resp, err := r.kAPI.Set(context.Background(), key, val, opts)
