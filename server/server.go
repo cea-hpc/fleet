@@ -223,7 +223,7 @@ func (s *Server) Run() {
 				break
 			}
 		}
-		log.Warningf("Server register machine failed: %v, retrying in %d sec.", err, sleep)
+		log.Warningf("Server register machine failed: %v, retrying in %.0f sec.", err, sleep.Seconds())
 		log.Infof("Syncing etcd client")
 		s.eClient.Sync(context.Background())
 		time.Sleep(sleep)
