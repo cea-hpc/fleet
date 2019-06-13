@@ -20,10 +20,10 @@ fi
 
 if [ ${GOOS} = "linux" ]; then
   echo "Building fleetd..."
-  CGO_ENABLED=0 go build -o bin/fleetd -a -installsuffix netgo -ldflags "${GLDFLAGS}" ${REPO_PATH}
+  CGO_ENABLED=0 go build -o bin/fleetd -a -installsuffix netgo -ldflags "${GLDFLAGS} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')" ${REPO_PATH}
 else
   echo "Not on Linux - skipping fleetd build"
 fi
 
 echo "Building fleetctl..."
-CGO_ENABLED=0 go build -o bin/fleetctl -a -installsuffix netgo -ldflags "${GLDFLAGS}" ${REPO_PATH}/fleetctl
+CGO_ENABLED=0 go build -o bin/fleetctl -a -installsuffix netgo -ldflags "${GLDFLAGS} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n')" ${REPO_PATH}/fleetctl
