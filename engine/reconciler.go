@@ -73,6 +73,23 @@ func (r *Reconciler) Reconcile(e *Engine, stop chan struct{}) {
 func (r *Reconciler) calculateClusterTasks(clust *clusterState, stopchan chan struct{}) (taskchan chan *task) {
 	taskchan = make(chan *task)
 
+	go func() {
+		agents := clust.agents()
+		metrics.ReportAvailableAgents(len(agents))
+		metrics.ResetAgents()
+		for _, as := range agents {
+			load := uint16(0)
+			for _, unit := range as.Units {
+				if unit.Weight == 0 {
+					load += 1
+				} else {
+					load += unit.Weight
+				}
+			}
+			metrics.ReportAgentLoad(as.MState.ID, load)
+		}
+	}()
+
 	send := func(typ, reason, jName, machID string) bool {
 		select {
 		case <-stopchan:
@@ -128,7 +145,6 @@ func (r *Reconciler) calculateClusterTasks(clust *clusterState, stopchan chan st
 			replacedUnit, err := as.GetReplacedUnit(j)
 			if err != nil {
 				log.Debugf("No unit to reschedule: %v", err)
-				metrics.ReportEngineReconcileFailure(metrics.ScheduleFailure)
 				continue
 			}
 
@@ -169,6 +185,7 @@ func (r *Reconciler) calculateClusterTasks(clust *clusterState, stopchan chan st
 			if !j.Scheduled() {
 				continue
 			}
+			metrics.ReportClusterJob(j.Name, &j.TargetMachineID, true)
 
 			act, reason := decide(j)
 			if act == job.JobActionReschedule && handle_reschedule(j, reason) {
@@ -178,7 +195,6 @@ func (r *Reconciler) calculateClusterTasks(clust *clusterState, stopchan chan st
 
 			if act != job.JobActionUnschedule {
 				log.Debugf("Job(%s) is not to be unscheduled, reason: %v", j.Name, reason)
-				metrics.ReportEngineReconcileFailure(metrics.ScheduleFailure)
 				continue
 			}
 
@@ -188,6 +204,7 @@ func (r *Reconciler) calculateClusterTasks(clust *clusterState, stopchan chan st
 				return
 			}
 
+			metrics.ReportClusterJob(j.Name, &j.TargetMachineID, false)
 			log.Debugf("Job(%s) unscheduling.", j.Name)
 			clust.unschedule(j.Name)
 		}

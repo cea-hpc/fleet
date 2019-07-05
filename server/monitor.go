@@ -20,6 +20,7 @@ import (
 
 	"github.com/cea-hpc/fleet/heart"
 	"github.com/cea-hpc/fleet/log"
+	"github.com/cea-hpc/fleet/metrics"
 )
 
 func NewMonitor(ttl time.Duration) *Monitor {
@@ -66,6 +67,7 @@ func check(hrt heart.Heart, ttl time.Duration) (idx uint64, err error) {
 			return
 		case <-next:
 			idx, err = hrt.Beat(ttl)
+			metrics.ReportHealth(err != nil)
 			if err != nil {
 				log.Debugf("Monitor heartbeat function returned err, retrying in %v: %v", interval, err)
 			}

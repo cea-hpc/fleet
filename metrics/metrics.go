@@ -100,9 +100,58 @@ var (
 		Name:      "operation_failed_count_total",
 		Help:      "Counter of failed registry operations.",
 	}, []string{"type"})
+
+	isLeaderGauge = prometheus.NewGauge(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "engine",
+		Name:      "is_leader",
+		Help:      "Whether I am the cluster leader or not",
+	})
+
+	agentsGauge = prometheus.NewGauge(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "engine",
+		Name:      "agents_available",
+		Help:      "Number of available agents.",
+	})
+
+	agentLoadGauge = prometheus.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "engine",
+		Name:      "agent_load",
+		Help:      "Current load on given agent",
+	}, []string{"id"})
+
+	clusterJobsGauge = prometheus.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "engine",
+		Name:      "cluster_jobs",
+		Help:      "Cluster jobs and whether they are scheduled or not",
+	}, []string{"job", "machineid"} )
+
+	agentStateGauge = prometheus.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "agent",
+		Name:      "state",
+		Help:      "Agent job states",
+	}, []string{"job", "desired_state"} )
+
+	healthyGauge = prometheus.NewGauge(prometheus.GaugeOpts{
+		Namespace: Namespace,
+		Subsystem: "agent",
+		Name:      "healthy",
+		Help:      "Is the agent healthy",
+	})
+
 )
 
 func init() {
+	prometheus.MustRegister(agentsGauge)
+	prometheus.MustRegister(agentStateGauge)
+	prometheus.MustRegister(agentLoadGauge)
+	prometheus.MustRegister(healthyGauge)
+	prometheus.MustRegister(clusterJobsGauge)
+	prometheus.MustRegister(isLeaderGauge)
 	prometheus.MustRegister(leaderGauge)
 	prometheus.MustRegister(engineTaskCount)
 	prometheus.MustRegister(engineTaskFailureCount)
@@ -110,10 +159,60 @@ func init() {
 	prometheus.MustRegister(engineReconcileFailureCount)
 }
 
+func ReportHealth(healthy bool){
+	if healthy {
+		healthyGauge.Set(1)
+	} else {
+		healthyGauge.Set(0)
+	}
+}
+
+func ResetAgentState() {
+	agentStateGauge.Reset()
+}
+
+func ReportAgentState(job string, dstate string, nominal bool) {
+	agentStateGauge.DeleteLabelValues(job)
+	if nominal {
+		agentStateGauge.WithLabelValues(job, dstate).Set(1)
+	} else {
+		agentStateGauge.WithLabelValues(job, dstate).Set(0)
+	}
+}
+func ReportClusterJob(job string, mach_id *string, scheduled bool) {
+	agentStateGauge.DeleteLabelValues(job)
+	if scheduled {
+		clusterJobsGauge.WithLabelValues(job, *mach_id).Set(1)
+	} else {
+		clusterJobsGauge.WithLabelValues(job, *mach_id).Set(0)
+	}
+}
+
+func ReportAvailableAgents(nbAgents int) {
+	agentsGauge.Set(float64(nbAgents))
+}
+
+func ResetAgents() {
+	agentLoadGauge.Reset()
+}
+
+func ReportAgentLoad(mach_id string, load uint16) {
+	agentLoadGauge.WithLabelValues(mach_id).Set(float64(load))
+}
+
+func ReportIsEngineLeader() {
+	isLeaderGauge.Set(float64(1))
+}
+
+func ReportIsNotEngineLeader() {
+	isLeaderGauge.Set(float64(0))
+}
+
 func ReportEngineLeader() {
 	epoch := time.Now().Unix()
 	leaderGauge.Add(float64(epoch))
 }
+
 func ReportEngineTask(task string) {
 	task = strings.ToLower(task)
 	engineTaskCount.WithLabelValues(string(task)).Inc()

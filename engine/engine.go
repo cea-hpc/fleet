@@ -155,11 +155,14 @@ func (e *Engine) Purge() {
 
 func isLeader(l lease.Lease, machID string) bool {
 	if l == nil {
+		metrics.ReportIsNotEngineLeader()
 		return false
 	}
 	if l.MachineID() != machID {
+		metrics.ReportIsNotEngineLeader()
 		return false
 	}
+	metrics.ReportIsEngineLeader()
 	return true
 }
 
