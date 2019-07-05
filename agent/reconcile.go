@@ -22,6 +22,7 @@ import (
 	"github.com/cea-hpc/fleet/job"
 	"github.com/cea-hpc/fleet/log"
 	"github.com/cea-hpc/fleet/machine"
+	"github.com/cea-hpc/fleet/metrics"
 	"github.com/cea-hpc/fleet/pkg"
 	"github.com/cea-hpc/fleet/registry"
 )
@@ -51,6 +52,7 @@ type AgentReconciler struct {
 func (ar *AgentReconciler) Run(a *Agent, stop <-chan struct{}) {
 	reconcile := func() {
 		start := time.Now()
+		metrics.ResetAgentState()
 		ar.Reconcile(a)
 		elapsed := time.Now().Sub(start)
 
@@ -236,6 +238,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 	}
 
 	if dJob == nil || dJob.TargetState == job.JobStateInactive {
+		metrics.ReportAgentState(jName, string(job.JobStateInactive), false)
 		if cJState == nil {
 			return nil
 		}
@@ -250,6 +253,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 	u.Unit = dJob.Unit
 
 	if cJState == nil {
+		metrics.ReportAgentState(jName, string(dJob.TargetState), false)
 		tasks = append(tasks, task{
 			typ:    taskTypeLoadUnit,
 			reason: taskReasonScheduledButUnloaded,
@@ -269,6 +273,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 	}
 
 	if cJHash != dJHash {
+		metrics.ReportAgentState(jName, string(dJob.TargetState), false)
 		log.Debugf("Desired hash %q differs to current hash %s of Job(%s) - unloading", dJHash, cJHash, jName)
 		// queue the correct unit for loading immediately after unloading the old one
 		tasks = append(tasks,
@@ -297,6 +302,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 	}
 
 	if *cJState == dJob.TargetState {
+		metrics.ReportAgentState(jName, string(dJob.TargetState), true)
 		log.Debugf("Desired state %q matches current state of Job(%s), nothing to do", *cJState, jName)
 		return nil
 	}
@@ -325,6 +331,7 @@ func (ar *AgentReconciler) calculateTasksForUnit(dState *AgentState, cState unit
 		})
 	}
 
+	metrics.ReportAgentState(jName, string(dJob.TargetState), false)
 	if len(tasks) == 0 {
 		log.Errorf("Unable to determine how to reconcile Job(%s): desiredState=%#v currentState=%#v", jName, dJob, cJState)
 	}
