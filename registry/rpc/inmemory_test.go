@@ -95,7 +95,25 @@ Description = Foo
 		Unit:         unitFile.ToPB(),
 		DesiredState: pb.TargetState_LOADED,
 	}
+
 	machineID := "testMachine"
+
+	// Try to trigger data races by continously polling states
+	sync := make(chan bool)
+	go func() {
+		<-sync
+		sync <- true
+		state := inmemoryRegistry.getScheduledUnitState(unit.Name, machineID)
+		t.Logf("State is %s", state)
+		for ok := pb.TargetState_INACTIVE; ok != pb.TargetState_LOADED; ok = inmemoryRegistry.getScheduledUnitState(unit.Name, machineID) {
+			t.Logf("State is %s", ok)
+		}
+		t.Logf("State is %s", inmemoryRegistry.getScheduledUnitState(unit.Name, machineID))
+		sync <- true
+	}()
+	sync <- true
+	<-sync
+
 	ttl := 2 * time.Second
 	inmemoryRegistry.CreateUnit(unit)
 	inmemoryRegistry.ScheduleUnit(unit.Name, machineID)
@@ -121,6 +139,9 @@ Description = Foo
 	if len(inmemoryRegistry.UnitStates()) != 1 {
 		t.Fatalf("unexpected amount of unit states in the in-memory registry got %d expected 1", len(inmemoryRegistry.UnitStates()))
 	}
+
+	// Join go routine
+	<-sync
 }
 
 func TestInMemoryUnitState(t *testing.T) {
