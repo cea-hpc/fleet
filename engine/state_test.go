@@ -17,6 +17,7 @@ package engine
 import (
 	"fmt"
 	"reflect"
+	"sync"
 	"testing"
 
 	"github.com/cea-hpc/fleet/agent"
@@ -44,6 +45,7 @@ func TestClusterStateAgents(t *testing.T) {
 			clust: &clusterState{
 				jobs:     map[string]*job.Job{},
 				machines: map[string]*machine.MachineState{},
+				mu:       new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{},
 		},
@@ -58,6 +60,7 @@ func TestClusterStateAgents(t *testing.T) {
 					},
 				},
 				machines: map[string]*machine.MachineState{},
+				mu:       new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{},
 		},
@@ -69,6 +72,7 @@ func TestClusterStateAgents(t *testing.T) {
 				machines: map[string]*machine.MachineState{
 					"XXX": &machine.MachineState{ID: "XXX"},
 				},
+				mu: new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{
 				"XXX": &agent.AgentState{
@@ -101,6 +105,7 @@ func TestClusterStateAgents(t *testing.T) {
 				machines: map[string]*machine.MachineState{
 					"XXX": &machine.MachineState{ID: "XXX"},
 				},
+				mu: new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{
 				"XXX": &agent.AgentState{
@@ -139,6 +144,7 @@ func TestClusterStateAgents(t *testing.T) {
 					"YYY": &machine.MachineState{ID: "YYY"},
 					"ZZZ": &machine.MachineState{ID: "ZZZ"},
 				},
+				mu: new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{
 				"XXX": &agent.AgentState{
@@ -219,6 +225,7 @@ func TestClusterStateAgents(t *testing.T) {
 						},
 					},
 				},
+				mu: new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{
 				"XXX": &agent.AgentState{
@@ -294,6 +301,7 @@ func TestClusterStateAgents(t *testing.T) {
 					"YYY": &machine.MachineState{ID: "YYY"},
 					"ZZZ": &machine.MachineState{ID: "ZZZ"},
 				},
+				mu: new(sync.RWMutex),
 			},
 			agents: map[string]*agent.AgentState{
 				"XXX": &agent.AgentState{

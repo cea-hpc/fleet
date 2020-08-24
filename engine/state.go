@@ -15,6 +15,8 @@
 package engine
 
 import (
+	"sync"
+
 	"github.com/cea-hpc/fleet/agent"
 	"github.com/cea-hpc/fleet/job"
 	"github.com/cea-hpc/fleet/machine"
@@ -24,6 +26,7 @@ type clusterState struct {
 	jobs     map[string]*job.Job
 	gUnits   map[string]*job.Unit
 	machines map[string]*machine.MachineState
+	mu       *sync.RWMutex
 }
 
 func newClusterState(units []job.Unit, sUnits []job.ScheduledUnit, machines []machine.MachineState) *clusterState {
@@ -65,6 +68,7 @@ func newClusterState(units []job.Unit, sUnits []job.ScheduledUnit, machines []ma
 		jobs:     jMap,
 		gUnits:   guMap,
 		machines: mMap,
+		mu:       new(sync.RWMutex),
 	}
 }
 
@@ -74,6 +78,9 @@ func (cs *clusterState) agents() map[string]*agent.AgentState {
 		ms := ms
 		agents[ms.ID] = agent.NewAgentState(ms)
 	}
+
+	cs.mu.Lock()
+	defer cs.mu.Unlock()
 
 	for _, j := range cs.jobs {
 		j := j
@@ -109,6 +116,9 @@ func (cs *clusterState) agents() map[string]*agent.AgentState {
 }
 
 func (cs *clusterState) schedule(jobName, targetMachineID string) {
+	cs.mu.Lock()
+	defer cs.mu.Unlock()
+
 	j := cs.jobs[jobName]
 	if j == nil {
 		return
@@ -117,6 +127,9 @@ func (cs *clusterState) schedule(jobName, targetMachineID string) {
 }
 
 func (cs *clusterState) unschedule(jobName string) {
+	cs.mu.Lock()
+	defer cs.mu.Unlock()
+
 	j := cs.jobs[jobName]
 	if j == nil {
 		return
