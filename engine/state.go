@@ -79,8 +79,8 @@ func (cs *clusterState) agents() map[string]*agent.AgentState {
 		agents[ms.ID] = agent.NewAgentState(ms)
 	}
 
-	cs.mu.Lock()
-	defer cs.mu.Unlock()
+	cs.mu.RLock()
+	defer cs.mu.RUnlock()
 
 	for _, j := range cs.jobs {
 		j := j

@@ -89,8 +89,6 @@ func (r *inmemoryRegistry) Schedule() (units []pb.ScheduledUnit, err error) {
 	}
 	r.mu.RLock()
 	defer r.mu.RUnlock()
-	r.unitStatesMu.Lock()
-	defer r.unitStatesMu.Unlock()
 
 	units = make([]pb.ScheduledUnit, 0, len(r.scheduledUnits))
 	for _, schedUnit := range r.scheduledUnits {
@@ -365,8 +363,8 @@ func (r *inmemoryRegistry) statesByMUSKey() map[registry.MUSKey]*pb.UnitState {
 }
 
 func (r *inmemoryRegistry) isUnitLoaded(unitName, machineID string) bool {
-	r.unitStatesMu.Lock()
-	defer r.unitStatesMu.Unlock()
+	r.unitStatesMu.RLock()
+	defer r.unitStatesMu.RUnlock()
 	if _, exists := r.unitStates[unitName]; exists {
 		if _, exists := r.unitStates[unitName][machineID]; exists {
 			return true
@@ -376,8 +374,8 @@ func (r *inmemoryRegistry) isUnitLoaded(unitName, machineID string) bool {
 }
 
 func (r *inmemoryRegistry) isUnitLaunched(unitName, machineID string) bool {
-	r.heartbeatsMu.Lock()
-	defer r.heartbeatsMu.Unlock()
+	r.heartbeatsMu.RLock()
+	defer r.heartbeatsMu.RUnlock()
 	if _, exists := r.unitHeartbeats[unitName]; exists {
 		if _, exists := r.unitHeartbeats[unitName][machineID]; exists {
 			return true
