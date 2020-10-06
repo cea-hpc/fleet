@@ -68,6 +68,7 @@ func (r *RegistryMux) ConnectToRegistry(e *engine.Engine) {
 		// If there is not error then we are able to get the leader state and continue
 		// otherwise we have to wait
 		if err == nil {
+			r.handlingEngineChange.Lock()
 			if isGrpc {
 				if r.rpcRegistry != nil && r.rpcRegistry.IsRegistryReady() {
 					log.Infof("Reusing gRPC engine, connection is READY\n")
@@ -89,6 +90,7 @@ func (r *RegistryMux) ConnectToRegistry(e *engine.Engine) {
 				// new leader is etcd-based
 				r.currentRegistry = r.etcdRegistry
 			}
+			r.handlingEngineChange.Unlock()
 		}
 		time.Sleep(5 * time.Second)
 	}
