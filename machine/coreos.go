@@ -72,13 +72,14 @@ func (m *CoreOSMachine) State() (state MachineState) {
 // Refresh updates the current state of the CoreOSMachine.
 func (m *CoreOSMachine) Refresh() {
 	m.RLock()
-	defer m.RUnlock()
-
 	cs := m.currentState()
+	m.RUnlock()
 	if cs == nil {
 		log.Warning("Unable to refresh machine state")
 	} else {
+		m.Lock()
 		m.dynamicState = cs
+		m.Unlock()
 	}
 }
 
