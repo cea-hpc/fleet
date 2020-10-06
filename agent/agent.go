@@ -43,7 +43,7 @@ type Agent struct {
 }
 
 func New(mgr unit.UnitManager, uGen *unit.UnitStateGenerator, reg registry.Registry, mach machine.Machine, ttl time.Duration) *Agent {
-	return &Agent{reg, mgr, uGen, mach, ttl, &agentCache{}}
+	return &Agent{reg, mgr, uGen, mach, ttl, newAgentCache()}
 }
 
 func (a *Agent) MarshalJSON() ([]byte, error) {

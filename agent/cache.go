@@ -16,33 +16,50 @@ package agent
 
 import (
 	"encoding/json"
+	"sync"
 
 	"github.com/cea-hpc/fleet/job"
 )
 
-type agentCache map[string]job.JobState
+type agentCache struct {
+	jobs map[string]job.JobState
+	mu   *sync.RWMutex
+}
+
+func newAgentCache() *agentCache {
+	return &agentCache{
+		jobs: map[string]job.JobState{},
+		mu:   new(sync.RWMutex),
+	}
+}
 
 func (ac *agentCache) MarshalJSON() ([]byte, error) {
 	type ds struct {
 		TargetStates map[string]job.JobState
 	}
 	data := ds{
-		TargetStates: map[string]job.JobState(*ac),
+		TargetStates: map[string]job.JobState(ac.jobs),
 	}
 	return json.Marshal(data)
 }
 
 func (ac *agentCache) setTargetState(jobName string, state job.JobState) {
-	(*ac)[jobName] = state
+	ac.mu.Lock()
+	defer ac.mu.Unlock()
+	ac.jobs[jobName] = state
 }
 
 func (ac *agentCache) dropTargetState(jobName string) {
-	delete(*ac, jobName)
+	ac.mu.Lock()
+	defer ac.mu.Unlock()
+	delete(ac.jobs, jobName)
 }
 
 func (ac *agentCache) launchedJobs() []string {
+	ac.mu.RLock()
+	defer ac.mu.RUnlock()
 	jobs := make([]string, 0)
-	for j, ts := range *ac {
+	for j, ts := range ac.jobs {
 		if ts == job.JobStateLaunched {
 			jobs = append(jobs, j)
 		}
@@ -51,8 +68,10 @@ func (ac *agentCache) launchedJobs() []string {
 }
 
 func (ac *agentCache) loadedJobs() []string {
+	ac.mu.RLock()
+	defer ac.mu.RUnlock()
 	jobs := make([]string, 0)
-	for j, ts := range *ac {
+	for j, ts := range ac.jobs {
 		if ts == job.JobStateLoaded {
 			jobs = append(jobs, j)
 		}
