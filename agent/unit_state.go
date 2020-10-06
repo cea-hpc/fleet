@@ -195,6 +195,8 @@ func (p *UnitStatePublisher) updateCache(update *unit.UnitStateHeartbeat) (chang
 // Purge ensures that the UnitStates for all Units known in the
 // UnitStatePublisher's cache are removed from the registry.
 func (p *UnitStatePublisher) Purge() {
+	p.cacheMutex.Lock()
+	defer p.cacheMutex.Unlock()
 	for name := range p.cache {
 		p.publisher(name, nil)
 	}
