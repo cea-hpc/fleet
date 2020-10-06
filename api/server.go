@@ -18,6 +18,7 @@ import (
 	"errors"
 	"net"
 	"net/http"
+	"sync"
 
 	"github.com/cea-hpc/fleet/log"
 )
@@ -29,6 +30,7 @@ func NewServer(listeners []net.Listener, hdlr http.Handler) *Server {
 		listeners: listeners,
 		api:       hdlr,
 		cur:       unavailable,
+		mu:        new(sync.RWMutex),
 	}
 }
 
@@ -36,6 +38,7 @@ type Server struct {
 	listeners []net.Listener
 	api       http.Handler
 	cur       http.Handler
+	mu        *sync.RWMutex
 }
 
 func (s *Server) GetListeners() []net.Listener {
@@ -43,6 +46,8 @@ func (s *Server) GetListeners() []net.Listener {
 }
 
 func (s *Server) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 	s.cur.ServeHTTP(rw, req)
 }
 
@@ -62,9 +67,13 @@ func (s *Server) Serve() {
 // response to the actual API. Once the provided channel is closed, the API is
 // torn back down and 503 responses are served.
 func (s *Server) Available(stop <-chan struct{}) {
+	s.mu.Lock()
 	s.cur = s.api
+	s.mu.Unlock()
 	<-stop
+	s.mu.Lock()
 	s.cur = unavailable
+	s.mu.Unlock()
 }
 
 type unavailableHdlr struct{}
